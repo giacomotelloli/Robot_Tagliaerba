@@ -1,0 +1,626 @@
+INFO     planner time limit: None
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     translator command line string: /usr/bin/python3 /opt/fast-downward-24.06.1/builds/release/bin/translate/translate.py /pddl/domain_classic.pddl /pddl/instance2_classic.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.008s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Trivial rules: Converted to facts.
+Normalizing Datalog program: [0.000s CPU, 0.003s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 25 rules.
+Computing model... [0.000s CPU, 0.005s wall-clock]
+498 relevant atoms
+420 auxiliary atoms
+918 final queue length
+1071 total queue pushes
+Completing instantiation... [0.000s CPU, 0.005s wall-clock]
+Instantiating: [0.020s CPU, 0.015s wall-clock]
+Computing fact groups...
+Finding invariants...
+11 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+34 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.004s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Processing axioms: [0.000s CPU, 0.001s wall-clock]
+Translating task: [0.010s CPU, 0.006s wall-clock]
+68 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+8 operators removed
+0 axioms removed
+4 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.003s wall-clock]
+Reordering and filtering variables...
+36 of 36 variables necessary.
+0 of 3 mutex groups necessary.
+174 of 174 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.001s wall-clock]
+Translator variables: 36
+Translator derived variables: 0
+Translator facts: 105
+Translator goal facts: 34
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 174
+Translator axioms: 0
+Translator task size: 903
+Translator peak memory: 27376 KB
+Writing output... [0.000s CPU, 0.001s wall-clock]
+Done! [0.030s CPU, 0.041s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: None
+INFO     search memory limit: None
+INFO     search command line string: /opt/fast-downward-24.06.1/builds/release/bin/downward --evaluator 'h=ff()' --search 'eager(tiebreaking([h], unsafe_pruning=true, pref_only=false),reopen_closed=true, f_eval=sum([h]) )' --internal-plan-file sas_plan < output.sas
+[t=0.000688s, 9672 KB] reading input...
+[t=0.001455s, 9672 KB] done reading input!
+[t=0.004164s, 10068 KB] Simplifying 242 unary operators... done! [242 unary operators]
+[t=0.004363s, 10068 KB] time to simplify: 0.000243s
+[t=0.004450s, 10068 KB] Initializing additive heuristic...
+[t=0.004483s, 10068 KB] Initializing FF heuristic...
+[t=0.004592s, 10068 KB] Building successor generator...done!
+[t=0.004782s, 10068 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.004827s, 10068 KB] time for successor generation creation: 0.000073s
+[t=0.004865s, 10068 KB] Variables: 36
+[t=0.004886s, 10068 KB] FactPairs: 105
+[t=0.004928s, 10068 KB] Bytes per state: 8
+[t=0.004995s, 10068 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.005101s, 10068 KB] New best heuristic value for ff: 67
+[t=0.005157s, 10068 KB] g=0, 1 evaluated, 0 expanded
+[t=0.005187s, 10068 KB] f = 67, 1 evaluated, 0 expanded
+[t=0.005234s, 10068 KB] Initial heuristic value for ff: 67
+[t=0.005299s, 10068 KB] pruning method: none
+[t=0.005487s, 10068 KB] New best heuristic value for ff: 66
+[t=0.005557s, 10068 KB] g=1, 4 evaluated, 1 expanded
+[t=0.005616s, 10068 KB] New best heuristic value for ff: 65
+[t=0.005676s, 10068 KB] g=2, 5 evaluated, 2 expanded
+[t=0.006662s, 10068 KB] New best heuristic value for ff: 64
+[t=0.006738s, 10068 KB] g=4, 67 evaluated, 30 expanded
+[t=0.006811s, 10068 KB] New best heuristic value for ff: 63
+[t=0.006866s, 10068 KB] g=5, 70 evaluated, 31 expanded
+[t=0.008930s, 10068 KB] New best heuristic value for ff: 62
+[t=0.009014s, 10068 KB] g=10, 249 evaluated, 113 expanded, 2 reopened
+[t=0.009093s, 10068 KB] New best heuristic value for ff: 61
+[t=0.009147s, 10068 KB] g=11, 252 evaluated, 114 expanded, 2 reopened
+[t=0.010684s, 10068 KB] New best heuristic value for ff: 60
+[t=0.010762s, 10068 KB] g=13, 379 evaluated, 175 expanded, 5 reopened
+[t=0.010866s, 10068 KB] New best heuristic value for ff: 59
+[t=0.010910s, 10068 KB] g=13, 385 evaluated, 177 expanded, 5 reopened
+[t=0.014978s, 10068 KB] New best heuristic value for ff: 58
+[t=0.015074s, 10068 KB] g=28, 780 evaluated, 384 expanded, 10 reopened
+[t=0.015626s, 10068 KB] New best heuristic value for ff: 57
+[t=0.015672s, 10068 KB] g=30, 837 evaluated, 411 expanded, 10 reopened
+[t=0.015968s, 10068 KB] New best heuristic value for ff: 56
+[t=0.016032s, 10068 KB] g=32, 855 evaluated, 418 expanded, 10 reopened
+[t=0.018459s, 10068 KB] New best heuristic value for ff: 55
+[t=0.018515s, 10068 KB] g=44, 1065 evaluated, 520 expanded, 14 reopened
+[t=0.018645s, 10068 KB] New best heuristic value for ff: 54
+[t=0.018678s, 10068 KB] g=45, 1078 evaluated, 527 expanded, 14 reopened
+[t=0.018729s, 10068 KB] New best heuristic value for ff: 53
+[t=0.018750s, 10068 KB] g=46, 1081 evaluated, 528 expanded, 14 reopened
+[t=0.018981s, 10068 KB] New best heuristic value for ff: 51
+[t=0.019020s, 10068 KB] g=52, 1103 evaluated, 539 expanded, 14 reopened
+[t=0.020110s, 10068 KB] New best heuristic value for ff: 50
+[t=0.020161s, 10068 KB] g=54, 1213 evaluated, 603 expanded, 21 reopened
+[t=0.020259s, 10068 KB] New best heuristic value for ff: 49
+[t=0.020277s, 10068 KB] g=56, 1219 evaluated, 605 expanded, 21 reopened
+[t=0.028817s, 10068 KB] New best heuristic value for ff: 48
+[t=0.028874s, 10068 KB] g=76, 2313 evaluated, 1210 expanded, 48 reopened
+[t=0.033047s, 10204 KB] New best heuristic value for ff: 47
+[t=0.033105s, 10204 KB] g=80, 2828 evaluated, 1468 expanded, 49 reopened
+[t=0.035357s, 10204 KB] New best heuristic value for ff: 46
+[t=0.035407s, 10204 KB] g=96, 3088 evaluated, 1617 expanded, 58 reopened
+[t=0.039438s, 10204 KB] New best heuristic value for ff: 45
+[t=0.039479s, 10204 KB] g=116, 3605 evaluated, 1881 expanded, 64 reopened
+[t=0.039539s, 10204 KB] New best heuristic value for ff: 44
+[t=0.039569s, 10204 KB] g=118, 3610 evaluated, 1883 expanded, 64 reopened
+[t=0.042545s, 10204 KB] New best heuristic value for ff: 42
+[t=0.042586s, 10204 KB] g=134, 3945 evaluated, 2057 expanded, 65 reopened
+[t=0.046649s, 10204 KB] New best heuristic value for ff: 41
+[t=0.046729s, 10204 KB] g=152, 4458 evaluated, 2333 expanded, 76 reopened
+[t=0.047688s, 10204 KB] New best heuristic value for ff: 40
+[t=0.047728s, 10204 KB] g=158, 4583 evaluated, 2398 expanded, 77 reopened
+[t=0.048039s, 10204 KB] New best heuristic value for ff: 39
+[t=0.048075s, 10204 KB] g=159, 4623 evaluated, 2417 expanded, 77 reopened
+[t=0.050612s, 10204 KB] New best heuristic value for ff: 38
+[t=0.050664s, 10204 KB] g=177, 4905 evaluated, 2583 expanded, 89 reopened
+[t=0.051086s, 10204 KB] New best heuristic value for ff: 37
+[t=0.051119s, 10204 KB] g=177, 4961 evaluated, 2616 expanded, 89 reopened
+[t=0.053379s, 10204 KB] New best heuristic value for ff: 36
+[t=0.053429s, 10204 KB] g=187, 5225 evaluated, 2775 expanded, 93 reopened
+[t=0.055587s, 10204 KB] New best heuristic value for ff: 34
+[t=0.055629s, 10204 KB] g=199, 5504 evaluated, 2943 expanded, 94 reopened
+[t=0.056938s, 10204 KB] New best heuristic value for ff: 33
+[t=0.056984s, 10204 KB] g=205, 5675 evaluated, 3040 expanded, 95 reopened
+[t=0.057230s, 10204 KB] New best heuristic value for ff: 32
+[t=0.057272s, 10204 KB] g=207, 5701 evaluated, 3057 expanded, 95 reopened
+[t=0.057799s, 10204 KB] New best heuristic value for ff: 31
+[t=0.057848s, 10204 KB] g=210, 5756 evaluated, 3088 expanded, 95 reopened
+[t=0.061048s, 10204 KB] New best heuristic value for ff: 30
+[t=0.061106s, 10204 KB] g=227, 6111 evaluated, 3351 expanded, 149 reopened
+[t=0.061205s, 10204 KB] New best heuristic value for ff: 29
+[t=0.061250s, 10204 KB] g=228, 6116 evaluated, 3353 expanded, 149 reopened
+[t=0.061822s, 10332 KB] New best heuristic value for ff: 28
+[t=0.061871s, 10332 KB] g=230, 6178 evaluated, 3391 expanded, 152 reopened
+[t=0.062058s, 10332 KB] New best heuristic value for ff: 27
+[t=0.062101s, 10332 KB] g=232, 6194 evaluated, 3398 expanded, 152 reopened
+[t=0.062994s, 10332 KB] New best heuristic value for ff: 26
+[t=0.063062s, 10332 KB] g=244, 6271 evaluated, 3453 expanded, 152 reopened
+[t=0.063443s, 10332 KB] New best heuristic value for ff: 25
+[t=0.063492s, 10332 KB] g=250, 6308 evaluated, 3477 expanded, 152 reopened
+[t=0.064291s, 10332 KB] New best heuristic value for ff: 24
+[t=0.064350s, 10332 KB] g=263, 6381 evaluated, 3532 expanded, 152 reopened
+[t=0.064418s, 10332 KB] New best heuristic value for ff: 23
+[t=0.064434s, 10332 KB] g=263, 6386 evaluated, 3534 expanded, 152 reopened
+[t=0.065181s, 10332 KB] New best heuristic value for ff: 22
+[t=0.065234s, 10332 KB] g=278, 6476 evaluated, 3607 expanded, 164 reopened
+[t=0.065616s, 10332 KB] New best heuristic value for ff: 21
+[t=0.065677s, 10332 KB] g=284, 6514 evaluated, 3627 expanded, 164 reopened
+[t=0.067230s, 10332 KB] New best heuristic value for ff: 20
+[t=0.067303s, 10332 KB] g=298, 6683 evaluated, 3774 expanded, 189 reopened
+[t=0.067581s, 10332 KB] New best heuristic value for ff: 19
+[t=0.067640s, 10332 KB] g=301, 6715 evaluated, 3805 expanded, 194 reopened
+[t=0.067755s, 10332 KB] New best heuristic value for ff: 18
+[t=0.067837s, 10332 KB] g=306, 6726 evaluated, 3811 expanded, 194 reopened
+[t=0.068528s, 10332 KB] New best heuristic value for ff: 17
+[t=0.068586s, 10332 KB] g=319, 6795 evaluated, 3858 expanded, 197 reopened
+[t=0.068851s, 10332 KB] New best heuristic value for ff: 16
+[t=0.068904s, 10332 KB] g=321, 6827 evaluated, 3874 expanded, 197 reopened
+[t=0.068961s, 10332 KB] New best heuristic value for ff: 15
+[t=0.068984s, 10332 KB] g=322, 6830 evaluated, 3875 expanded, 197 reopened
+[t=0.069874s, 10332 KB] New best heuristic value for ff: 14
+[t=0.069937s, 10332 KB] g=332, 6933 evaluated, 3949 expanded, 202 reopened
+[t=0.070391s, 10332 KB] New best heuristic value for ff: 13
+[t=0.070438s, 10332 KB] g=352, 6985 evaluated, 3999 expanded, 218 reopened
+[t=0.070544s, 10332 KB] New best heuristic value for ff: 12
+[t=0.070595s, 10332 KB] g=354, 6988 evaluated, 4001 expanded, 218 reopened
+[t=0.071085s, 10332 KB] New best heuristic value for ff: 10
+[t=0.071148s, 10332 KB] g=364, 7042 evaluated, 4048 expanded, 220 reopened
+[t=0.071247s, 10332 KB] New best heuristic value for ff: 9
+[t=0.071292s, 10332 KB] g=366, 7049 evaluated, 4051 expanded, 220 reopened
+[t=0.071335s, 10332 KB] New best heuristic value for ff: 8
+[t=0.071360s, 10332 KB] g=366, 7050 evaluated, 4051 expanded, 220 reopened
+[t=0.071449s, 10332 KB] New best heuristic value for ff: 7
+[t=0.071500s, 10332 KB] g=368, 7054 evaluated, 4054 expanded, 220 reopened
+[t=0.071565s, 10332 KB] New best heuristic value for ff: 6
+[t=0.071617s, 10332 KB] g=370, 7059 evaluated, 4056 expanded, 220 reopened
+[t=0.071663s, 10332 KB] New best heuristic value for ff: 5
+[t=0.071690s, 10332 KB] g=371, 7060 evaluated, 4057 expanded, 220 reopened
+[t=0.071751s, 10332 KB] New best heuristic value for ff: 3
+[t=0.071787s, 10332 KB] g=372, 7061 evaluated, 4058 expanded, 220 reopened
+[t=0.072722s, 10464 KB] New best heuristic value for ff: 2
+[t=0.072780s, 10464 KB] g=384, 7096 evaluated, 4092 expanded, 229 reopened
+[t=0.072824s, 10464 KB] New best heuristic value for ff: 1
+[t=0.072841s, 10464 KB] g=385, 7098 evaluated, 4093 expanded, 229 reopened
+[t=0.072892s, 10464 KB] New best heuristic value for ff: 0
+[t=0.072942s, 10464 KB] g=386, 7100 evaluated, 4094 expanded, 229 reopened
+[t=0.072980s, 10464 KB] Solution found!
+[t=0.073028s, 10464 KB] Actual search time: 0.067640s
+cut-from-full robot1 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+cut-from-full robot1 c12 (1)
+move robot1 c12 c22 (1)
+cut-from-mid robot1 c22 (1)
+move robot1 c22 c21 (1)
+move robot1 c21 c11 (1)
+charge-from-low robot1 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c21 (1)
+move robot1 c21 c31 (1)
+cut-from-full robot1 c31 (1)
+move robot1 c31 c21 (1)
+move robot1 c21 c22 (1)
+move robot1 c22 c23 (1)
+cut-from-mid robot1 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-low robot1 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c43 (1)
+cut-from-full robot1 c43 (1)
+move robot1 c43 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c32 (1)
+cut-from-full robot1 c32 (1)
+move robot1 c32 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c21 (1)
+cut-from-full robot1 c21 (1)
+move robot1 c21 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c54 (1)
+move robot1 c54 c55 (1)
+move robot1 c55 c56 (1)
+move robot1 c56 c66 (1)
+cut-from-full robot1 c66 (1)
+move robot1 c66 c56 (1)
+move robot1 c56 c55 (1)
+move robot1 c55 c54 (1)
+move robot1 c54 c53 (1)
+move robot1 c53 c43 (1)
+move robot1 c43 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c54 (1)
+move robot1 c54 c55 (1)
+move robot1 c55 c56 (1)
+cut-from-full robot1 c56 (1)
+move robot1 c56 c55 (1)
+move robot1 c55 c54 (1)
+move robot1 c54 c53 (1)
+move robot1 c53 c43 (1)
+move robot1 c43 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c63 (1)
+move robot1 c63 c64 (1)
+move robot1 c64 c65 (1)
+cut-from-full robot1 c65 (1)
+move robot1 c65 c64 (1)
+move robot1 c64 c54 (1)
+move robot1 c54 c53 (1)
+move robot1 c53 c43 (1)
+move robot1 c43 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c54 (1)
+move robot1 c54 c64 (1)
+cut-from-full robot1 c64 (1)
+move robot1 c64 c54 (1)
+move robot1 c54 c53 (1)
+move robot1 c53 c43 (1)
+move robot1 c43 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c54 (1)
+move robot1 c54 c55 (1)
+cut-from-full robot1 c55 (1)
+move robot1 c55 c54 (1)
+move robot1 c54 c53 (1)
+move robot1 c53 c43 (1)
+move robot1 c43 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c13 (1)
+cut-from-full robot1 c13 (1)
+move robot1 c13 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c34 (1)
+move robot1 c34 c35 (1)
+move robot1 c35 c45 (1)
+move robot1 c45 c55 (1)
+move robot1 c55 c54 (1)
+cut-from-full robot1 c54 (1)
+move robot1 c54 c53 (1)
+move robot1 c53 c43 (1)
+move robot1 c43 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+cut-from-full robot1 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c34 (1)
+cut-from-full robot1 c34 (1)
+move robot1 c34 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c13 (1)
+move robot1 c13 c14 (1)
+cut-from-full robot1 c14 (1)
+move robot1 c14 c13 (1)
+move robot1 c13 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c63 (1)
+cut-from-full robot1 c63 (1)
+move robot1 c63 c53 (1)
+move robot1 c53 c54 (1)
+move robot1 c54 c55 (1)
+move robot1 c55 c56 (1)
+move robot1 c56 c46 (1)
+cut-from-mid robot1 c46 (1)
+move robot1 c46 c36 (1)
+move robot1 c36 c35 (1)
+move robot1 c35 c34 (1)
+move robot1 c34 c33 (1)
+move robot1 c33 c32 (1)
+move robot1 c32 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-low robot1 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c23 (1)
+move robot1 c23 c33 (1)
+move robot1 c33 c43 (1)
+move robot1 c43 c53 (1)
+cut-from-full robot1 c53 (1)
+move robot1 c53 c43 (1)
+move robot1 c43 c42 (1)
+cut-from-mid robot1 c42 (1)
+move robot1 c42 c32 (1)
+move robot1 c32 c31 (1)
+move robot1 c31 c21 (1)
+move robot1 c21 c11 (1)
+charge-from-low robot1 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c21 (1)
+move robot1 c21 c31 (1)
+move robot1 c31 c32 (1)
+move robot1 c32 c42 (1)
+move robot1 c42 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c54 (1)
+move robot1 c54 c55 (1)
+move robot1 c55 c45 (1)
+cut-from-full robot1 c45 (1)
+move robot1 c45 c55 (1)
+move robot1 c55 c54 (1)
+move robot1 c54 c53 (1)
+move robot1 c53 c43 (1)
+move robot1 c43 c42 (1)
+move robot1 c42 c32 (1)
+move robot1 c32 c22 (1)
+move robot1 c22 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c21 (1)
+move robot1 c21 c31 (1)
+move robot1 c31 c41 (1)
+cut-from-full robot1 c41 (1)
+move robot1 c41 c31 (1)
+move robot1 c31 c21 (1)
+move robot1 c21 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c22 (1)
+move robot1 c22 c32 (1)
+move robot1 c32 c42 (1)
+move robot1 c42 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c54 (1)
+move robot1 c54 c55 (1)
+move robot1 c55 c56 (1)
+move robot1 c56 c46 (1)
+move robot1 c46 c36 (1)
+cut-from-full robot1 c36 (1)
+move robot1 c36 c46 (1)
+move robot1 c46 c45 (1)
+move robot1 c45 c55 (1)
+move robot1 c55 c54 (1)
+move robot1 c54 c53 (1)
+move robot1 c53 c52 (1)
+cut-from-mid robot1 c52 (1)
+move robot1 c52 c42 (1)
+move robot1 c42 c32 (1)
+move robot1 c32 c31 (1)
+move robot1 c31 c21 (1)
+move robot1 c21 c11 (1)
+charge-from-low robot1 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c21 (1)
+move robot1 c21 c31 (1)
+move robot1 c31 c32 (1)
+move robot1 c32 c42 (1)
+move robot1 c42 c43 (1)
+move robot1 c43 c53 (1)
+move robot1 c53 c63 (1)
+move robot1 c63 c62 (1)
+cut-from-full robot1 c62 (1)
+move robot1 c62 c63 (1)
+move robot1 c63 c64 (1)
+move robot1 c64 c65 (1)
+move robot1 c65 c55 (1)
+move robot1 c55 c45 (1)
+move robot1 c45 c35 (1)
+cut-from-mid robot1 c35 (1)
+move robot1 c35 c25 (1)
+move robot1 c25 c15 (1)
+move robot1 c15 c14 (1)
+move robot1 c14 c13 (1)
+move robot1 c13 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-low robot1 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c13 (1)
+move robot1 c13 c14 (1)
+move robot1 c14 c15 (1)
+cut-from-full robot1 c15 (1)
+move robot1 c15 c14 (1)
+move robot1 c14 c13 (1)
+move robot1 c13 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c13 (1)
+move robot1 c13 c14 (1)
+move robot1 c14 c15 (1)
+move robot1 c15 c25 (1)
+cut-from-full robot1 c25 (1)
+move robot1 c25 c35 (1)
+move robot1 c35 c34 (1)
+move robot1 c34 c33 (1)
+move robot1 c33 c32 (1)
+move robot1 c32 c31 (1)
+move robot1 c31 c21 (1)
+move robot1 c21 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c21 (1)
+move robot1 c21 c31 (1)
+move robot1 c31 c41 (1)
+move robot1 c41 c51 (1)
+move robot1 c51 c61 (1)
+cut-from-full robot1 c61 (1)
+move robot1 c61 c51 (1)
+move robot1 c51 c41 (1)
+move robot1 c41 c31 (1)
+move robot1 c31 c21 (1)
+move robot1 c21 c11 (1)
+charge-from-mid robot1 c11 (1)
+move robot1 c11 c21 (1)
+move robot1 c21 c31 (1)
+move robot1 c31 c41 (1)
+move robot1 c41 c51 (1)
+cut-from-full robot1 c51 (1)
+move robot1 c51 c41 (1)
+move robot1 c41 c31 (1)
+move robot1 c31 c32 (1)
+move robot1 c32 c33 (1)
+move robot1 c33 c23 (1)
+move robot1 c23 c13 (1)
+move robot1 c13 c14 (1)
+move robot1 c14 c15 (1)
+move robot1 c15 c16 (1)
+cut-from-mid robot1 c16 (1)
+move robot1 c16 c15 (1)
+move robot1 c15 c14 (1)
+move robot1 c14 c13 (1)
+move robot1 c13 c12 (1)
+move robot1 c12 c11 (1)
+charge-from-low robot1 c11 (1)
+move robot1 c11 c12 (1)
+move robot1 c12 c13 (1)
+move robot1 c13 c14 (1)
+move robot1 c14 c15 (1)
+move robot1 c15 c16 (1)
+move robot1 c16 c26 (1)
+cut-from-mid robot1 c26 (1)
+[t=0.073078s, 10464 KB] Plan length: 380 step(s).
+[t=0.073078s, 10464 KB] Plan cost: 380
+[t=0.073078s, 10464 KB] Expanded 4095 state(s).
+[t=0.073078s, 10464 KB] Reopened 229 state(s).
+[t=0.073078s, 10464 KB] Evaluated 7100 state(s).
+[t=0.073078s, 10464 KB] Evaluations: 7100
+[t=0.073078s, 10464 KB] Generated 14462 state(s).
+[t=0.073078s, 10464 KB] Dead ends: 0 state(s).
+[t=0.073078s, 10464 KB] Expanded until last jump: 0 state(s).
+[t=0.073078s, 10464 KB] Reopened until last jump: 0 state(s).
+[t=0.073078s, 10464 KB] Evaluated until last jump: 1 state(s).
+[t=0.073078s, 10464 KB] Generated until last jump: 0 state(s).
+[t=0.073078s, 10464 KB] Number of registered states: 7100
+[t=0.073078s, 10464 KB] Int hash set load factor: 7100/16384 = 0.433350
+[t=0.073078s, 10464 KB] Int hash set resizes: 14
+[t=0.073078s, 10464 KB] Search time: 0.068085s
+[t=0.073078s, 10464 KB] Total time: 0.073078s
+Solution found.
+Peak memory: 10464 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Planner time: 0.28s

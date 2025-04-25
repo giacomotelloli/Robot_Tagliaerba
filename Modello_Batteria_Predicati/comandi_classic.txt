@@ -1,0 +1,24 @@
+#-----------------------
+#       ISTANZA 1
+#-----------------------
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance1_classic.pddl --search "astar(add())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza1_add.txt" 2>&1
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance1_classic.pddl --search "astar(ff())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza1_ff.txt" 2>&1
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance1_classic.pddl --search "astar(max())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza1_max.txt" 2>&1
+
+#+++++++++++++++++++++++
+
+#-----------------------
+#       ISTANZA 2
+#-----------------------
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance2_classic.pddl --search "astar(add())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza2_add.txt" 2>&1
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance2_classic.pddl --search "astar(ff())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza2_ff.txt" 2>&1
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance2_classic.pddl --search "astar(max())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza2_max.txt" 2>&1
+
+#+++++++++++++++++++++++
+
+#-----------------------
+#       ISTANZA 3
+#-----------------------
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance3_classic.pddl --search "astar(add())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza3_add.txt" 2>&1
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance3_classic.pddl --search "astar(ff())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza3_ff.txt" 2>&1
+docker run --rm -v "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati:/pddl" fast-downward-24061 /pddl/domain_classic.pddl /pddl/instance3_classic.pddl --search "astar(max())" > "C:\Users\tellg\Documents\Universita\PlanningReasoning\Progetto_Esame\Progetto_PDDL\Modello_Batteria_Predicati\log_istanza3_max.txt" 2>&1

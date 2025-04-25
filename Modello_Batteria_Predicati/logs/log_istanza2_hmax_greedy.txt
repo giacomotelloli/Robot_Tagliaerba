@@ -1,0 +1,126 @@
+INFO     planner time limit: None
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     translator command line string: /usr/bin/python3 /opt/fast-downward-24.06.1/builds/release/bin/translate/translate.py /pddl/domain_classic.pddl /pddl/instance2_classic.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.010s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Trivial rules: Converted to facts.
+Normalizing Datalog program: [0.010s CPU, 0.004s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 25 rules.
+Computing model... [0.000s CPU, 0.006s wall-clock]
+498 relevant atoms
+420 auxiliary atoms
+918 final queue length
+1071 total queue pushes
+Completing instantiation... [0.010s CPU, 0.004s wall-clock]
+Instantiating: [0.020s CPU, 0.017s wall-clock]
+Computing fact groups...
+Finding invariants...
+11 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+34 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.004s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Processing axioms: [0.000s CPU, 0.001s wall-clock]
+Translating task: [0.010s CPU, 0.006s wall-clock]
+68 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+8 operators removed
+0 axioms removed
+4 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.002s wall-clock]
+Reordering and filtering variables...
+36 of 36 variables necessary.
+0 of 3 mutex groups necessary.
+174 of 174 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.001s wall-clock]
+Translator variables: 36
+Translator derived variables: 0
+Translator facts: 105
+Translator goal facts: 34
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 174
+Translator axioms: 0
+Translator task size: 903
+Translator peak memory: 27368 KB
+Writing output... [0.000s CPU, 0.001s wall-clock]
+Done! [0.030s CPU, 0.043s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: None
+INFO     search memory limit: None
+INFO     search command line string: /opt/fast-downward-24.06.1/builds/release/bin/downward --evaluator 'h=hmax()' --search 'eager(tiebreaking([h], unsafe_pruning=true, pref_only=false),reopen_closed=true, f_eval=sum([h]) )' --internal-plan-file sas_plan < output.sas
+[t=0.000080s, 9672 KB] reading input...
+[t=0.000687s, 9672 KB] done reading input!
+[t=0.001977s, 10068 KB] Simplifying 242 unary operators... done! [242 unary operators]
+[t=0.002163s, 10068 KB] time to simplify: 0.000235s
+[t=0.002250s, 10068 KB] Initializing HSP max heuristic...
+[t=0.002369s, 10068 KB] Building successor generator...done!
+[t=0.002625s, 10068 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.002652s, 10068 KB] time for successor generation creation: 0.000106s
+[t=0.002704s, 10068 KB] Variables: 36
+[t=0.002760s, 10068 KB] FactPairs: 105
+[t=0.002816s, 10068 KB] Bytes per state: 8
+[t=0.002861s, 10068 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.002980s, 10068 KB] New best heuristic value for hmax: 11
+[t=0.003038s, 10068 KB] g=0, 1 evaluated, 0 expanded
+[t=0.003075s, 10068 KB] f = 11, 1 evaluated, 0 expanded
+[t=0.003128s, 10068 KB] Initial heuristic value for hmax: 11
+[t=0.003163s, 10068 KB] pruning method: none
+[t=0.003246s, 10068 KB] New best heuristic value for hmax: 10
+[t=0.003303s, 10068 KB] g=1, 2 evaluated, 1 expanded
+[t=0.003366s, 10068 KB] New best heuristic value for hmax: 9
+[t=0.003443s, 10068 KB] g=2, 5 evaluated, 2 expanded
+[t=0.003609s, 10068 KB] New best heuristic value for hmax: 8
+[t=0.003720s, 10068 KB] g=3, 9 evaluated, 3 expanded
+[t=0.003813s, 10068 KB] New best heuristic value for hmax: 7
+[t=0.003876s, 10068 KB] g=4, 11 evaluated, 4 expanded
+[t=0.193645s, 11660 KB] New best heuristic value for hmax: 6
+[t=0.193722s, 11660 KB] g=19, 30967 evaluated, 34711 expanded, 7500 reopened
+Traceback (most recent call last):
+  File "./fast-downward.py", line 5, in <module>
+    main()
+  File "/opt/fast-downward-24.06.1/driver/main.py", line 40, in main
+    (exitcode, continue_execution) = run_components.run_search(args)
+  File "/opt/fast-downward-24.06.1/driver/run_components.py", line 130, in run_search
+    call.check_call(
+  File "/opt/fast-downward-24.06.1/driver/call.py", line 63, in check_call
+    return subprocess.check_call(cmd, stdin=stdin_file, **kwargs)
+  File "/usr/lib/python3.8/subprocess.py", line 359, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/usr/lib/python3.8/subprocess.py", line 342, in call
+    return p.wait(timeout=timeout)
+  File "/usr/lib/python3.8/subprocess.py", line 1083, in wait
+    return self._wait(timeout=timeout)
+  File "/usr/lib/python3.8/subprocess.py", line 1806, in _wait
+    (pid, sts) = self._try_wait(0)
+  File "/usr/lib/python3.8/subprocess.py", line 1764, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+KeyboardInterrupt
