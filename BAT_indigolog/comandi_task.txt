@@ -1,0 +1,26 @@
+
+
+# precondizioni di partenza , batteria al 15%
+
+ LEGALITY TASK 
+
+ - [move(c11,c12),cutGrass(c12),move(c12,c13),cutGrass(c13)] - true
+ 
+
+ - [move(c11,c21),cutGrass(c21),move(c21,c22),cutGrass(c22),move(c22,c23),cutGrass(c23),move(c23,c24)] - false (Program Fails)
+ - [move(c11,c12),cutGrass(c12),move(c12,c13),cutGrass(c13),goToCharge(c13)] -  false
+
+
+ PROJECTION TASK 
+
+  - condizione da verificare robotAt(c11)
+
+  - sequenza di azioni
+    S1 = [move(c11,c12),move(c12,c13),cutGrass(c13),goToCharge] - true
+    S2 = [move(c11,c12),move(c12,c13),cutGrass(c13),move(c13,c14)] - false 
+
+- condizione da verificare batteryLevel is 14.
+
+  - sequenza di azioni
+    S1 = [move(c11,c12)] - true
+    S2 = [move(c11,c12),move(c12,c13)] - false 
