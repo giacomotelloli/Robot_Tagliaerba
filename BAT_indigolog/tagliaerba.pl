@@ -160,23 +160,25 @@ initially(isRaining,false).
 
 /* REACTIVE CONTROLLER */ 
 proc(cut_all,
-star(
-  pi([From,To],
-    if(
-      and(robotAt(From),and(hasGrass(To),connected(From,To))),
-      [move(From,To),cutGrass(To)],
-      no_op
+  star(
+    pi([From, To],
+      if(
+        and(robotAt(From), and(hasGrass(To), connected(From, To))),
+        [move(From, To), cutGrass(To)],
+        no_op
+      )
     )
   )
-)).
+).
+
 
 proc(control(reactive_cut),
   prioritized_interrupts([
     interrupt(isRaining, waitFor(neg(isRaining))),
     interrupt(batteryLevel =< 10, [goToCharge, waitFor(batteryLevel > 10)])
-  ])(
+  ]),
     cut_all
-  )
+  ]
 ).
 
 
