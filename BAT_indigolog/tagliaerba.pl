@@ -333,6 +333,39 @@ initially(batteryLevel,15).
 initially(robotAt(C),true) :- cell(C),member(C,[c11]).
 initially(hasGrass(C),true):- cell(C) , \+ obstacle(C) ; \+ chargingStation(C).
 
+/* REACTIVE CONTROLLER */ 
+proc(cut_all,
+  while(
+    some([C], hasGrass(C)),
+    pi([C],
+      if(
+        hasGrass(C),
+        [move_to(C), cutGrass(C)],
+        no_op
+      )
+    )
+  )
+).
+
+proc(move_to(C),
+  pi([Curr],
+    if(robotAt(Curr),
+      path(Curr, C), % Supponendo che tu abbia un predicato per trovare un path
+      no_op
+    )
+  )
+).
+
+proc(control(reactive_cut),
+  prioritized_interrupts([
+    interrupt(isRaining, waitFor(neg(isRaining))),
+    interrupt(batteryLevel =< 10, [goToCharge, waitFor(batteryLevel > 10)])
+  ])(
+    cut_all
+  )
+).
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  INFORMATION FOR THE EXECUTOR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
