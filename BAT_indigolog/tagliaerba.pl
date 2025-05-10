@@ -173,7 +173,7 @@ proc(cut_all,
 
 
 proc(control(reactive_cut),
-  prioritized_interrupts([
+  [prioritized_interrupts([
     interrupt(isRaining, waitFor(neg(isRaining))),
     interrupt(batteryLevel =< 10, [goToCharge, waitFor(batteryLevel > 10)])
   ]),
