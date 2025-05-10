@@ -173,14 +173,6 @@ initially(isRaining,false).
 /* REACTIVE CONTROLLER */ 
 
 
-  [prioritized_interrupts([
-    interrupt(isRaining, waitFor(neg(isRaining))),
-    interrupt(batteryLevel =< 10, [goToCharge, waitFor(batteryLevel > 10)])
-  ]),
-    cut_all
-  ]
-).
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  INFORMATION FOR THE EXECUTOR
@@ -269,15 +261,17 @@ proc(cut_all,
 ).
 
 proc(control(reactive_cut),
-  [prioritized_interrupts([
-    interrupt(change_weather, [
+  prioritized_interrupts([
+    interrupt(true, [  % sempre vero = scatta sempre, controlla tu cosa fare
+      waitFor(change_weather),
       unset(change_weather),
       waitFor(neg(isRaining)),
       goToCharge,
       waitFor(batteryLevel > 10),
       cut_all
     ])
-  ]),
-   cut_all
-  ]
+  ],
+    cut_all
+  )
 ).
+
