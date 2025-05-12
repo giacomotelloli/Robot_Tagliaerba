@@ -17,7 +17,7 @@
 % CONSULT APPLICATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-:- [tagliaerba].
+:- [tagliaerba_final].
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SPECIFY ADDRESS OF ENVIRONMENT MANAGER

@@ -114,6 +114,7 @@ rel_fluent(robotAt(C)) :- cell(C).
 fun_fluent(batteryLevel).
 rel_fluent(isRaining).
 rel_fluent(change_weather).
+rel_fluent(some_changes).
 
 /* ACTIONS */
 
@@ -130,23 +131,16 @@ poss(cutGrass(C1),and(and(and(robotAt(C1),hasGrass(C1)),batteryLevel > 10),neg(i
 
 /* return to charging station action */
 prim_action(goToCharge) .
-poss(goToCharge,batteryLevel =< 10).
+poss(goToCharge,or(batteryLevel =< 10,isRaining)).
 
 prim_action(Act) :- exog_action(Act).
 poss(Act, true) :- exog_action(Act).
 
 /* EXOGENOUS ACTIONS */ 
 exog_action(toggle_rain).
-
-:- dynamic rain_toggle_counter/1.
-rain_toggle_counter(0).
-
-exog_occurs(toggle_rain) :-
-    rain_toggle_counter(N),
-    N1 is (N + 1) mod 10,
-    retractall(rain_toggle_counter(_)),
-    assertz(rain_toggle_counter(N1)),
-    N1 =:= 0.
+poss(toggle_rain,
+  neg(isRaining)
+).
 
 /* SUCCESSOR STATE AXIOMS */ 
 causes_false(cutGrass,hasGrass,true).
@@ -162,23 +156,15 @@ causes_val(goToCharge,batteryLevel,50,true).
 
 causes_true(toggle_rain,isRaining,neg(isRaining)).
 causes_false(toggle_rain,isRaining,isRaining).
+causes_true(toggle_rain, some_changes, true).
 
 /* INITIAL STATE */
-initially(batteryLevel,12).
+initially(batteryLevel,100).
 initially(robotAt(C),true) :- cell(C),member(C,[c11]).
 initially(hasGrass(C),true):- cell(C) , \+ obstacle(C) , \+ chargingStation(C).
 initially(isRaining,false).
 
 /* REACTIVE CONTROLLER */ 
-
-
-  [prioritized_interrupts([
-    interrupt(isRaining, waitFor(neg(isRaining))),
-    interrupt(batteryLevel =< 10, [goToCharge, waitFor(batteryLevel > 10)])
-  ]),
-    cut_all
-  ]
-).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,8 +178,8 @@ actionNum(X, X).
 % EOF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-proc(cut_all,
-  [    cutGrass(c11),
+proc(cut_all_full,
+  [  
     move(c11, c12),
     cutGrass(c12),
     move(c12, c13),
@@ -267,17 +253,49 @@ proc(cut_all,
   ]
 ).
 
+proc(pi_move,
+  pi([from,to],if(and(robotAt(from),connected(from,to)),
+      move(from,to),
+      no_op)
+  )
+).
+
+proc(pi_cutGrass,
+  pi([c],if(hasGrass(c),cutGrass(c),no_op))
+).
+
+proc(cut_all,
+  star([
+    pi_move,
+    pi_cutGrass
+  ])
+).
+
+proc(cut_all_pi,
+    pi([From,To],
+      if(
+        and(robotAt(From),and(connected(From,To),hasGrass(To))),
+        [move(From,To),cutGrass(To)],
+        no_op
+      )
+    )
+).
+
+proc(wait_until_not_rain,
+  while(isRaining,[no_op])
+).
+
+proc(full_search, [
+  if(isRaining,goToCharge,[]),
+  wait_until_not_rain,
+  cut_all
+]).
 
 proc(control(reactive_cut), [
   prioritized_interrupts([
     interrupt(true, [
-      if(change_weather, unset(change_weather), []),
-      gexec(neg(change_weather), [
-        waitFor(neg(isRaining)),
-        goToCharge,
-        waitFor(batteryLevel > 10),
-        cut_all
-      ])
+      if(some_changes, unset(some_changes), []),
+      gexec(neg(some_changes), full_search)
     ])
   ])
 ]).
