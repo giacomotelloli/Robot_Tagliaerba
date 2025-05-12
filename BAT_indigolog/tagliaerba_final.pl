@@ -161,7 +161,42 @@ causes_true(toggle_rain, some_changes, true).
 /* INITIAL STATE */
 initially(batteryLevel,100).
 initially(robotAt(C),true) :- cell(C),member(C,[c11]).
-initially(hasGrass(C),true):- cell(C) , \+ obstacle(C) , \+ chargingStation(C).
+initially(hasGrass(c11), false).
+initially(hasGrass(c12), true).
+initially(hasGrass(c13), true).
+initially(hasGrass(c14), true).
+initially(hasGrass(c15), true).
+initially(hasGrass(c16), true).
+initially(hasGrass(c21), true).
+initially(hasGrass(c22), true).
+initially(hasGrass(c23), true).
+initially(hasGrass(c24), true).
+initially(hasGrass(c25), true).
+initially(hasGrass(c26), true).
+initially(hasGrass(c31), true).
+initially(hasGrass(c32), true).
+initially(hasGrass(c33), false).
+initially(hasGrass(c34), true).
+initially(hasGrass(c35), true).
+initially(hasGrass(c36), true).
+initially(hasGrass(c41), true).
+initially(hasGrass(c42), true).
+initially(hasGrass(c43), true).
+initially(hasGrass(c44), true).
+initially(hasGrass(c45), true).
+initially(hasGrass(c46), true).
+initially(hasGrass(c51), true).
+initially(hasGrass(c52), true).
+initially(hasGrass(c53), true).
+initially(hasGrass(c54), true).
+initially(hasGrass(c55), true).
+initially(hasGrass(c56), true).
+initially(hasGrass(c61), true).
+initially(hasGrass(c62), true).
+initially(hasGrass(c63), true).
+initially(hasGrass(c64), true).
+initially(hasGrass(c65), true).
+initially(hasGrass(c66), true).
 initially(isRaining,false).
 
 /* REACTIVE CONTROLLER */ 
