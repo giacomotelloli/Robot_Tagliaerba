@@ -152,7 +152,7 @@ causes_val(move(_,_),batteryLevel,N, N is batteryLevel-1).
 
 causes_true(goToCharge,robotAt(C),chargingStation(C)).
 causes_false(goToCharge,robotAt(C2), neg(chargingStation(C2))).
-causes_val(goToCharge,batteryLevel,50,true).
+causes_val(goToCharge,batteryLevel,100,true).
 
 causes_true(toggle_rain,isRaining,neg(isRaining)).
 causes_false(toggle_rain,isRaining,isRaining).
@@ -213,37 +213,23 @@ actionNum(X, X).
 % EOF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-proc(pi_move,
-  pi([from,to],if(and(robotAt(from),connected(from,to)),
-      move(from,to),
-      no_op)
-  )
-).
 
-proc(pi_cutGrass,
-  pi([c],if(hasGrass(c),cutGrass(c),no_op))
+proc(wait_until_not_rain,
+  while(isRaining, [goToCharge,no_op])
 ).
 
 proc(cut_all,
   star([
-    pi_move,
-    pi_cutGrass
+    pi([From, To],
+      if(and(robotAt(From), and(connected(From, To), hasGrass(To))),
+         [move(From, To),
+          cutGrass(To),
+          if(batteryLevel =< 10, [goToCharge], [])],
+         no_op)
+    )
   ])
 ).
 
-proc(cut_all_pi,
-    pi([From,To],
-      if(
-        and(robotAt(From),and(connected(From,To),hasGrass(To))),
-        [move(From,To),cutGrass(To)],
-        no_op
-      )
-    )
-).
-
-proc(wait_until_not_rain,
-  while(isRaining,[no_op])
-).
 
 proc(full_search, [
   if(isRaining,goToCharge,[]),
