@@ -219,7 +219,6 @@ proc(wait_until_not_rain,
 ).
 
 proc(cut_all,
-  star([
     pi([From, To],
       if(and(robotAt(From), and(connected(From, To), hasGrass(To))),
          [move(From, To),
@@ -227,7 +226,6 @@ proc(cut_all,
           if(batteryLevel =< 10, [goToCharge], [])],
          no_op)
     )
-  ])
 ).
 
 
@@ -244,4 +242,10 @@ proc(control(reactive_cut), [
       gexec(neg(some_changes), full_search)
     ])
   ])
+]).
+
+
+proc(control(full_search), search(full_search)).
+proc(full_search, [
+  star(cut_all),
 ]).
