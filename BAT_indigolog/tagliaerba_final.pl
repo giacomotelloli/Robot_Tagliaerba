@@ -163,8 +163,47 @@ initially(robotAt(C),true) :- cell(C),member(C,[c11]).
 initially(hasGrass(C),true):- cell(C) , \+ obstacle(C) , \+ chargingStation(C).
 initially(isRaining,false).
 
-/* REACTIVE CONTROLLER */ 
 
+grassRemaining :-
+    hasGrass(c12) ;
+    hasGrass(c13) ;
+    hasGrass(c14) ;
+    hasGrass(c15) ;
+    hasGrass(c16) ;
+    hasGrass(c21) ;
+    hasGrass(c22) ;
+    hasGrass(c23) ;
+    hasGrass(c24) ;
+    hasGrass(c25) ;
+    hasGrass(c26) ;
+    hasGrass(c31) ;
+    hasGrass(c32) ;
+    hasGrass(c33) ;
+    hasGrass(c34) ;
+    hasGrass(c35) ;
+    hasGrass(c36) ;
+    hasGrass(c41) ;
+    hasGrass(c42) ;
+    hasGrass(c43) ;
+    hasGrass(c44) ;
+    hasGrass(c45) ;
+    hasGrass(c46) ;
+    hasGrass(c51) ;
+    hasGrass(c52) ;
+    hasGrass(c53) ;
+    hasGrass(c54) ;
+    hasGrass(c55) ;
+    hasGrass(c56) ;
+    hasGrass(c61) ;
+    hasGrass(c62) ;
+    hasGrass(c63) ;
+    hasGrass(c64) ;
+    hasGrass(c65) ;
+    hasGrass(c66).
+
+
+
+/* REACTIVE CONTROLLER */
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  INFORMATION FOR THE EXECUTOR
@@ -178,7 +217,7 @@ actionNum(X, X).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 proc(check_all_cut,
-  if(neg(some([c],hasGrass(c))),
+  if(neg(grassRemaining),
     set(allGrassCut),
     no_op
   )
