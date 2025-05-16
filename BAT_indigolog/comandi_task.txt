@@ -2,20 +2,18 @@
 
 # precondizioni di partenza , batteria al 15%
 
- LEGALITY TASK 
+ LEGALITY TASK (battery at 15%)
 
  - [move(c11,c12),cutGrass(c12),move(c12,c13),cutGrass(c13)] - true
- 
-
- - [move(c11,c21),cutGrass(c21),move(c21,c22),cutGrass(c22),move(c22,c23),cutGrass(c23),move(c23,c24)] - false (Program Fails)
  - [move(c11,c12),cutGrass(c12),move(c12,c13),cutGrass(c13),goToCharge(c13)] -  false
 
 
  PROJECTION TASK 
 
-  - condizione da verificare robotAt(c11)
+  - condizione to be verified robotAt(c11)
 
-  - sequenza di azioni
+  - Sequences of actions (must be reversed for the input)
+
     S1 = [move(c11,c12),move(c12,c13),cutGrass(c13),goToCharge] - true
     S2 = [move(c11,c12),move(c12,c13),cutGrass(c13),move(c13,c14)] - false 
 
@@ -23,4 +21,8 @@
 
   CONTROLLER TASK
    - Full search plan attempt
-   [cutGrass(c13),move(c12,c13),cutGrass(c12),move(c13,c12),cutGrass(c13),move(c12,c13),cutGrass(c12),move(c13,c12),cutGrass(c13),move(c12,c13),cutGrass(c12),move(c11,c12)]
+   
+   [cutGrass(c13),move(c12,c13),cutGrass(c12),
+   move(c13,c12),cutGrass(c13),move(c12,c13),
+   cutGrass(c12),move(c13,c12),cutGrass(c13),
+   move(c12,c13),cutGrass(c12),move(c11,c12)]
