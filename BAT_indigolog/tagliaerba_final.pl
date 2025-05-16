@@ -178,7 +178,7 @@ actionNum(X, X).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 proc(check_all_cut,
-  if(neg(some([C],hasGrass(C))),
+  if(neg(some([c],hasGrass(c))),
     set(allGrassCut),
     no_op
   )
@@ -188,13 +188,13 @@ proc(check_all_cut,
 proc(cut_all,
   while(neg(allGrassCut),
     [
-      ndet([From,To],
+      ndet([from,to],
         if(
-          and(robotAt(From),and(connected(From,To),hasGrass(To))),
+          and(robotAt(from),and(connected(from,to),hasGrass(to))),
           [
             if(batteryLevel =< 10,[goToCharge],[]),
-            move(From,To),
-            cutGrass(To)
+            move(from,to),
+            cutGrass(to)
           ],
           no_op
         )
@@ -205,9 +205,9 @@ proc(cut_all,
 ).
 
 proc(test_ndet,
-  ndet([From,To],
-    if(move(From,To),
-      say(['NDET ha scelto: ',To]),
+  ndet([from,to],
+    if(move(from,to),
+      say(['NDET ha scelto: ',to]),
       say(['NDET ha fallito'])
     )
   )
@@ -216,9 +216,9 @@ proc(test_ndet,
 
 
 pproc(test_pi,
-  pi([From,To],
-    if(move(From,To),
-      say(['PI ha scelto: ',To]),
+  pi([from,to],
+    if(move(from,to),
+      say(['PI ha scelto: ',to]),
       say(['PI ha fallito'])
     )
   )
