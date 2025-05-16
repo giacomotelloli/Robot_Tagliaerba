@@ -113,8 +113,7 @@ rel_fluent(hasGrass(C)) :- cell(C).
 rel_fluent(robotAt(C)) :- cell(C).
 fun_fluent(batteryLevel).
 rel_fluent(isRaining).
-rel_fluent(change_weather).
-rel_fluent(some_changes).
+rel_fluent(allGrassCut).
 
 /* ACTIONS */
 
@@ -152,7 +151,7 @@ causes_val(move(_,_),batteryLevel,N, N is batteryLevel-1).
 
 causes_true(goToCharge,robotAt(C),chargingStation(C)).
 causes_false(goToCharge,robotAt(C2), neg(chargingStation(C2))).
-causes_val(goToCharge,batteryLevel,50,true).
+causes_val(goToCharge,batteryLevel,100,true).
 
 causes_true(toggle_rain,isRaining,neg(isRaining)).
 causes_false(toggle_rain,isRaining,isRaining).
@@ -161,42 +160,7 @@ causes_true(toggle_rain, some_changes, true).
 /* INITIAL STATE */
 initially(batteryLevel,100).
 initially(robotAt(C),true) :- cell(C),member(C,[c11]).
-initially(hasGrass(c11), false).
-initially(hasGrass(c12), true).
-initially(hasGrass(c13), true).
-initially(hasGrass(c14), true).
-initially(hasGrass(c15), true).
-initially(hasGrass(c16), true).
-initially(hasGrass(c21), true).
-initially(hasGrass(c22), true).
-initially(hasGrass(c23), true).
-initially(hasGrass(c24), true).
-initially(hasGrass(c25), true).
-initially(hasGrass(c26), true).
-initially(hasGrass(c31), true).
-initially(hasGrass(c32), true).
-initially(hasGrass(c33), false).
-initially(hasGrass(c34), true).
-initially(hasGrass(c35), true).
-initially(hasGrass(c36), true).
-initially(hasGrass(c41), true).
-initially(hasGrass(c42), true).
-initially(hasGrass(c43), true).
-initially(hasGrass(c44), true).
-initially(hasGrass(c45), true).
-initially(hasGrass(c46), true).
-initially(hasGrass(c51), true).
-initially(hasGrass(c52), true).
-initially(hasGrass(c53), true).
-initially(hasGrass(c54), true).
-initially(hasGrass(c55), true).
-initially(hasGrass(c56), true).
-initially(hasGrass(c61), true).
-initially(hasGrass(c62), true).
-initially(hasGrass(c63), true).
-initially(hasGrass(c64), true).
-initially(hasGrass(c65), true).
-initially(hasGrass(c66), true).
+initially(hasGrass(C),true):- cell(C) , \+ obstacle(C) , \+ chargingStation(C).
 initially(isRaining,false).
 
 /* REACTIVE CONTROLLER */ 
@@ -213,49 +177,54 @@ actionNum(X, X).
 % EOF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-proc(pi_move,
-  pi([from,to],if(and(robotAt(from),connected(from,to)),
-      move(from,to),
-      no_op)
+proc(check_all_cut,
+  if(neg(some([C],hasGrass(C))),
+    set(allGrassCut),
+    no_op
   )
 ).
 
-proc(pi_cutGrass,
-  pi([c],if(hasGrass(c),cutGrass(c),no_op))
-).
 
 proc(cut_all,
-  star([
-    pi_move,
-    pi_cutGrass
-  ])
+  while(neg(allGrassCut),
+    [
+      ndet([From,To],
+        if(
+          and(robotAt(From),and(connected(From,To),hasGrass(To))),
+          [
+            if(batteryLevel =< 10,[goToCharge],[]),
+            move(From,To),
+            cutGrass(To)
+          ],
+          no_op
+        )
+      ),
+      check_all_cut
+    ]
+  )
 ).
 
-proc(cut_all_pi,
-    pi([From,To],
-      if(
-        and(robotAt(From),and(connected(From,To),hasGrass(To))),
-        [move(From,To),cutGrass(To)],
-        no_op
-      )
+proc(test_ndet,
+  ndet([From,To],
+    if(move(From,To),
+      say(['NDET ha scelto: ',To]),
+      say(['NDET ha fallito'])
     )
+  )
+
 ).
 
-proc(wait_until_not_rain,
-  while(isRaining,[no_op])
+
+pproc(test_pi,
+  pi([From,To],
+    if(move(From,To),
+      say(['PI ha scelto: ',To]),
+      say(['PI ha fallito'])
+    )
+  )
+
 ).
 
-proc(full_search, [
-  if(isRaining,goToCharge,[]),
-  wait_until_not_rain,
-  cut_all
-]).
-
-proc(control(reactive_cut), [
-  prioritized_interrupts([
-    interrupt(true, [
-      if(some_changes, unset(some_changes), []),
-      gexec(neg(some_changes), full_search)
-    ])
-  ])
-]).
+proc(control(full_search), cut_all).
+proc(control(ndet_test), test_ndet).
+proc(control(pi_test), test_pi).
