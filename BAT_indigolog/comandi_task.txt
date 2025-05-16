@@ -19,8 +19,8 @@
     S1 = [move(c11,c12),move(c12,c13),cutGrass(c13),goToCharge] - true
     S2 = [move(c11,c12),move(c12,c13),cutGrass(c13),move(c13,c14)] - false 
 
-- condizione da verificare batteryLevel is 14.
 
-  - sequenza di azioni
-    S1 = [move(c11,c12)] - true
-    S2 = [move(c11,c12),move(c12,c13)] - false 
+
+  CONTROLLER TASK
+   - Full search plan attempt
+   [cutGrass(c13),move(c12,c13),cutGrass(c12),move(c13,c12),cutGrass(c13),move(c12,c13),cutGrass(c12),move(c13,c12),cutGrass(c13),move(c12,c13),cutGrass(c12),move(c11,c12)]

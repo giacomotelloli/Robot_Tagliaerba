@@ -162,44 +162,44 @@ initially(batteryLevel,100).
 initially(robotAt(C),true) :- cell(C),member(C,[c11]).
 initially(hasGrass(C),true):- cell(C) , \+ obstacle(C) , \+ chargingStation(C).
 initially(isRaining,false).
+initially(hasGrass(c11), false).
+initially(hasGrass(c12), true).
+initially(hasGrass(c13), true).
+initially(hasGrass(c14), true).
+initially(hasGrass(c15), true).
+initially(hasGrass(c16), true).
+initially(hasGrass(c21), true).
+initially(hasGrass(c22), true).
+initially(hasGrass(c23), true).
+initially(hasGrass(c24), true).
+initially(hasGrass(c25), true).
+initially(hasGrass(c26), true).
+initially(hasGrass(c31), true).
+initially(hasGrass(c32), true).
+initially(hasGrass(c33), false).
+initially(hasGrass(c34), true).
+initially(hasGrass(c35), true).
+initially(hasGrass(c36), true).
+initially(hasGrass(c41), true).
+initially(hasGrass(c42), true).
+initially(hasGrass(c43), true).
+initially(hasGrass(c44), true).
+initially(hasGrass(c45), true).
+initially(hasGrass(c46), true).
+initially(hasGrass(c51), true).
+initially(hasGrass(c52), true).
+initially(hasGrass(c53), true).
+initially(hasGrass(c54), true).
+initially(hasGrass(c55), true).
+initially(hasGrass(c56), true).
+initially(hasGrass(c61), true).
+initially(hasGrass(c62), true).
+initially(hasGrass(c63), true).
+initially(hasGrass(c64), true).
+initially(hasGrass(c65), true).
+initially(hasGrass(c66), true).
+initially(isRaining,false).
 
-
-grassRemaining :-
-    hasGrass(c12) ;
-    hasGrass(c13) ;
-    hasGrass(c14) ;
-    hasGrass(c15) ;
-    hasGrass(c16) ;
-    hasGrass(c21) ;
-    hasGrass(c22) ;
-    hasGrass(c23) ;
-    hasGrass(c24) ;
-    hasGrass(c25) ;
-    hasGrass(c26) ;
-    hasGrass(c31) ;
-    hasGrass(c32) ;
-    hasGrass(c33) ;
-    hasGrass(c34) ;
-    hasGrass(c35) ;
-    hasGrass(c36) ;
-    hasGrass(c41) ;
-    hasGrass(c42) ;
-    hasGrass(c43) ;
-    hasGrass(c44) ;
-    hasGrass(c45) ;
-    hasGrass(c46) ;
-    hasGrass(c51) ;
-    hasGrass(c52) ;
-    hasGrass(c53) ;
-    hasGrass(c54) ;
-    hasGrass(c55) ;
-    hasGrass(c56) ;
-    hasGrass(c61) ;
-    hasGrass(c62) ;
-    hasGrass(c63) ;
-    hasGrass(c64) ;
-    hasGrass(c65) ;
-    hasGrass(c66).
 
 
 
@@ -216,18 +216,11 @@ actionNum(X, X).
 % EOF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-proc(check_all_cut,
-  if(neg(grassRemaining),
-    set(allGrassCut),
-    no_op
-  )
-).
-
 
 proc(cut_all,
-  while(neg(allGrassCut),
+  while(hasGrass(c66),
     [
-      ndet([from,to],
+      pi([from,to],
         if(
           and(robotAt(from),and(connected(from,to),hasGrass(to))),
           [
@@ -237,33 +230,9 @@ proc(cut_all,
           ],
           no_op
         )
-      ),
-      check_all_cut
+      )
     ]
   )
 ).
 
-proc(test_ndet,
-  ndet([from,to],
-    if(move(from,to),
-      say(['NDET ha scelto: ',to]),
-      say(['NDET ha fallito'])
-    )
-  )
-
-).
-
-
-pproc(test_pi,
-  pi([from,to],
-    if(move(from,to),
-      say(['PI ha scelto: ',to]),
-      say(['PI ha fallito'])
-    )
-  )
-
-).
-
 proc(control(full_search), cut_all).
-proc(control(ndet_test), test_ndet).
-proc(control(pi_test), test_pi).
