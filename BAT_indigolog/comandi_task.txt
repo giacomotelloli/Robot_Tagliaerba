@@ -10,12 +10,12 @@
 
  PROJECTION TASK 
 
-  - condizione to be verified robotAt(c11)
+  - condition to be verified robotAt(c11)
 
   - Sequences of actions (must be reversed for the input)
 
     S1 = [move(c11,c12),move(c12,c13),cutGrass(c13),goToCharge] - true
-    S2 = [move(c11,c12),move(c12,c13),cutGrass(c13),move(c13,c14)] - false 
+    S2 = [move(c11,c12),move(c12,c13),cutGrass(c13)] - false 
 
 
 
